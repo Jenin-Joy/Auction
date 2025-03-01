@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auction List</title>
+</head>
+<body>
+    <table cellpadding="10">
+        <tr>
+            <td>#</td>
+            <td>Work</td>
+            <td>Amount</td>
+            <td>Date</td>
+            <td>To Date</td>
+            <td>Start Time</td>
+            <td>Total Amount</td>
+            <td>Action</td>
+        </tr>
+        {% for i in auction %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td><img src="{{i.artwork.artwork_photo.url}}" width="100" height="100" alt=""></td>
+            <td>{{i.auctionhead_amount}}</td>
+            <td>{{i.auctionhead_date}}</td>
+            <td>{{i.auctionhead_todate}}</td>
+            <td>{{i.auction_starttime}}</td>
+            <td>
+                {% if i.auction_totalamount != "" %}
+                {{i.auction_totalamount}}
+                {% else %}
+                <span style="color: red;">N/A</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if i.auctionhead_status == 1 %}
+                <!-- <a href="{% url 'Artist:auctionupdation' i.id 2 %}">End</a> -->
+                 Started
+                {% elif i.auctionhead_status == 2 %} 
+                Auction Ended
+                {% else %}
+                <a href="{% url 'Artist:auctionupdation' i.id 1 %}">Start</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

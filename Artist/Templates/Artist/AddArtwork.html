@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Artwork</title>
+</head>
+<body>
+    <center>
+    <h2>Add Artwork</h2>
+    <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+      <table border="1">
+        <tr>
+            <td>Photo</td>
+            <td><input type="file"  name="txtphoto" required></td>
+         </tr> 
+    <tr>
+        <td>Price</td>
+        <td><input type="Name"  name="txtprice"  required/></td>
+    </tr>
+
+    <tr>
+        <td>Description</td>
+        <td><textarea name="txtdescription" rows="2" cols="16"  required ></textarea></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+        <input type="submit"  name="Add"  value="Add">
+    </tr>
+    </table>
+
+    
+<table border="1" cellpadding="10">
+    <h2>Added Artworks</h2>
+    <tr>
+        <td>SI No</td>
+        <td>Photo</td>
+        <td>Price</td>
+        <td>Descrition</td> 
+        <td>Action</td>
+    </tr>
+    
+    
+    {% for i in artwork  %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td><img src="{{i.artwork_photo.url}}" width="100" height="100"></td>
+        <td>{{i.artwork_price}}</td>
+        <td>{{i.artwork_description}}</td>
+        <td>{% if i.artwork_status == 0 %} <a href="{% url 'Artist:addtoauction' i.id %}">Add For Auction</a> {% elif i.artwork_status == 2 %} Add For Auction {% else %} Sold Out {% endif %}
+    </tr>
+    {% endfor %}
+    
+
+</form>
+</center>
+</body>
+</html>

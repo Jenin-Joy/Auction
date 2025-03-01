@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table cellpadding="10">
+        <tr>
+            <td>#</td>
+            <td>Work</td>
+            <td>Amount</td>
+            <td>Date</td>
+            <td>Start Time</td>
+            <td>Artist</td>
+            <td>Amount</td>
+            <td>Status</td>
+        </tr>
+        {% for i in auction %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td><img src="{{i.auction.artwork.artwork_photo.url}}" width="100" height="100" alt=""></td>
+            <td>{{i.auction.auctionhead_amount}}</td>
+            <td>{{i.auction.auctionhead_todate}}</td>
+            <td>{{i.auction.auction_starttime}}</td>
+            <td>{{i.auction.artwork.artist.artist_name}}</td>
+            <td>{{i.auctionbody_amount}}</td>
+            <td>
+                {% if i.auction.auctionhead_status == 3 %}
+                Payment Completed
+                {% else %}
+                Auction Completed | <a href="{% url 'User:auctionpayment' i.id %}">Payment</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+</body>
+</html>

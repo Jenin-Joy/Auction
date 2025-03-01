@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+
+<body>
+    <center>
+        <h2>LOGIN</h2>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <table border="5">
+                <tr>
+                    <td>
+                        <p>Email</p>
+                    </td>
+                    <td><input type="email" placeholder="Enter Email_id" name="txtemail" required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="center">Password</p>
+                    </td>
+                    <td><input type="password" placeholder="Enter the password" name="pass" required></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" name="LOGIN" value="Login">
+                    </td>
+                </tr>
+            </table>
+        </form>
+</body>
+
+</html>
