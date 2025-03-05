@@ -115,6 +115,9 @@ def auctionpayment(request, id):
     amount = auction.auctionbody_amount
     auc = tbl_auctionhead.objects.get(id=auction.auction.id)
     if request.method == "POST":
+        artwork = tbl_artwork.objects.get(id=auc.artwork.id)
+        artwork.artwork_status=3
+        artwork.save()
         auc.auctionhead_status = 3
         auc.save()
         return redirect("User:loader")
